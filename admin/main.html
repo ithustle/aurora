@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PORNOCODE - SEU SITE DE PORNOGRAFIA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body onload="$.fn.paginas()">
+        <section class="header header_dashboard">
+            <div class="wrap">
+                <header>
+                    <div id="logo_dashboard">
+
+                    </div>
+                </header>
+            </div>
+        </section>
+        <section class="seccao_lateral_menu">
+            <div class="header_section">
+                <h5>REGISTOS</h5>
+            </div>
+            <ul class="lista_menu">
+                <li><a href="#" id="mAlunos">Matricular Alunos</a></li>
+                <li><a href="#" id="cPacotes">Cadastrar Pacotes</a></li>
+                <li><a href="#" id="cCursos">Cadastrar Cursos</a></li>
+            </ul>
+            <div class="header_section">
+                <h5>Menus</h5>
+            </div>
+        </section>
+        
+        <!-- MAIN -->
+        
+        <section class="container_main" id="main">
+            <div id="logoBack"></div>
+        </section>
+        
+        <!-- ADD PACOTES DE CURSOS -->
+
+            <section class="container_main" id="addPacotes">
+                <div class="header_section">
+                    <h5>Adicionar pacotes de cursos</h5>
+                </div>
+                <section class="container_main">
+                    <form id="frmAddPacotes" enctype="multipart/form-data"> 
+                        <label for="pacote">Nome do pacote</label>
+                        <input type="text" name="pacote" id="pacote" placeholder="Introduza o nome do pacote" />
+                        
+                        <label for="descricaoPacote">Descrição</label>
+                        <textarea id="descricaoPacote" name="descricaoPacote" rows="5" cols="45" placeholder="Faça uma breve descrição do pacote"></textarea>
+                        
+                        <label for="logotipo">Logotipo</label>
+                        <input type="file" name="logotipo" id="logotipo" />
+                        
+                        <input type="button" value="Guardar" class="botao_form" id="btnGuardar" />
+                        <input type="reset" value="Limpar" class="botao_form" />
+                        <div class="msg"></div>
+                    </form>
+                    <img src="" id="imagePreview" alt="Previsualizar logotipo">
+                </section>
+            </section>
+        
+        <!-- MATRICULAR ALUNOS -->
+        <section id="addAlunos">
+            <section class="container_main">
+                <div class="header_section">
+                    <h5>Matricular alunos</h5>
+                </div>
+                <section class="container_main">
+                    <form id="frmMatricularAlunos" method="POST" action="javascript:func()"> 
+                        <label for="aluno">Nome do Aluno</label>
+                        <input type="text" name="aluno" id="aluno" placeholder="Ex: Célio Garcia" />
+                        <label for="bi">Número do BI</label>
+                        <input type="text" name="bi" id="bi" placeholder="Ex: 000055209LA010" />
+                        <!--<label for="logotipo">Logotipo</label>-->
+                        <input type="submit" value="Guardar" id="btnGuardarAluno" class="botao_form" />
+                        <input type="reset" value="Limpar" class="botao_form" />
+                        <div class="msg"></div>
+                    </form>
+                </section>
+            </section>
+        </section>
+        
+        <script src="../js/libs/jquery/jquery.js"></script>
+        <script src="js/jsAdmin.js"></script> 
+        <script src="js/jsControllerPage.js"></script>
+        <script src="js/jsFuncoes.js"></script> 
+    </body>
+</html>

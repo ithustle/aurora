@@ -1,0 +1,96 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 06-Ago-2015 às 11:34
+-- Versão do servidor: 5.6.17
+-- PHP Version: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `aurora`
+--
+CREATE DATABASE IF NOT EXISTS `aurora` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `aurora`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `alunos`
+--
+
+CREATE TABLE IF NOT EXISTS `alunos` (
+  `idalunos` int(11) NOT NULL AUTO_INCREMENT,
+  `aluno` varchar(50) NOT NULL,
+  `bi` varchar(15) NOT NULL,
+  PRIMARY KEY (`idalunos`),
+  UNIQUE KEY `idalunos` (`idalunos`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 PACK_KEYS=0 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `alunos`
+--
+
+INSERT INTO `alunos` (`idalunos`, `aluno`, `bi`) VALUES
+(1, 'Célio Garcia', '000055209LA010');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cursos`
+--
+
+CREATE TABLE IF NOT EXISTS `cursos` (
+  `idcurso` int(11) NOT NULL AUTO_INCREMENT,
+  `curso` varchar(30) DEFAULT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `idpacote` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idcurso`),
+  UNIQUE KEY `idcurso` (`idcurso`),
+  KEY `idpacote` (`idpacote`),
+  KEY `idcurso_2` (`idcurso`,`idpacote`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 PACK_KEYS=0 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pacote_cursos`
+--
+
+CREATE TABLE IF NOT EXISTS `pacote_cursos` (
+  `idpacote` int(11) NOT NULL AUTO_INCREMENT,
+  `pacote` varchar(30) NOT NULL,
+  `logotipo` varchar(150) NOT NULL,
+  `descricao` varchar(100) NOT NULL,
+  `idaluno` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idpacote`),
+  UNIQUE KEY `idpacote` (`idpacote`),
+  KEY `idaluno` (`idaluno`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 PACK_KEYS=0 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `pacote_cursos`
+--
+
+INSERT INTO `pacote_cursos` (`idpacote`, `pacote`, `logotipo`, `descricao`, `idaluno`) VALUES
+(1, 'PHP', 'img/imgcursos/aurora_php-icon.png', 'Pronto para criar aplicações web de maneira produtiva?', NULL),
+(2, 'Android', 'img/imgcursos/aurora_android-phone.png', 'Os celulares estão por toda a parte. Aprenda Android e crie aplicações para milhões de pessoas.', NULL);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `cursos`
+--
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `cursos_fk1` FOREIGN KEY (`idpacote`) REFERENCES `pacote_cursos` (`idpacote`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `pacote_cursos`
+--
+ALTER TABLE `pacote_cursos`
+  ADD CONSTRAINT `pacote_cursos_fk1` FOREIGN KEY (`idaluno`) REFERENCES `alunos` (`idalunos`) ON DELETE CASCADE ON UPDATE CASCADE;
